@@ -17,10 +17,12 @@ NIPRA: a non-intrusive pronunciation assessment model
     
 (3) Convert .WAV file to .wav file using:
 ```
+cd speechocean762
 python convert_wavfile.py
 ```
 (4) Generate the training and testing list using:
 ```
+cd speechocean762
 python create_training_and_testing_list.py
 ```
 (5) Obtain the whisper ASR result. 
