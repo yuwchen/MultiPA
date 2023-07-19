@@ -146,6 +146,7 @@ def predict_one_file(filepath,  whisper_model_s, whisper_model_w, word_model):
 parser = argparse.ArgumentParser()
 parser.add_argument('--fairseq_base_model', type=str, default='./fairseq_hubert/hubert_base_ls960.pt', help='Path to pretrained fairseq hubert model.')
 parser.add_argument('--fairseq_roberta', type=str, default='./fairseq_roberta', help='Path to pretrained fairseq roberta.')
+parser.add_argument('--inputdir', type=str, help='Path to testing wavfile.')
 parser.add_argument('--ckptdir', type=str, help='Path to pretrained checkpoint.')
 
 
@@ -154,7 +155,7 @@ args = parser.parse_args()
 ssl_path = args.fairseq_base_model
 roberta_path = args.fairseq_roberta
 my_checkpoint_dir = args.ckptdir
-
+file_dir  = args.inputdir
 
 word_model = RobertaModel.from_pretrained(roberta_path, checkpoint_file='model.pt')
 word_model.eval()
@@ -175,10 +176,9 @@ assessment_model.eval()
 assessment_model.load_state_dict(torch.load(os.path.join(my_checkpoint_dir,'PRO'+os.sep+'best')))
 
 
-file_dir = '/homes/nfs/oboe/columbia/pronunciation/chatbot/ieltsbot_audio'
 filepath_list = get_filepaths(file_dir)
 
-for filepath in filepath_list[::-1]:
+for filepath in filepath_list:
     s = time.time()
     results = predict_one_file(filepath, whisper_model_s, whisper_model_w, word_model)
     print('Process time:', time.time()-s)
