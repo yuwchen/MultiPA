@@ -39,6 +39,7 @@ python get_training_features.py
 python model_assessment.py --outdir model_assessment
 ```
 Note: usually, the validation loss will stop decreasing after 2 epochs.
+
 ### Step 3. Inference
 Get the assessment results with the ground-truth transcript
 ```
@@ -49,8 +50,6 @@ python test_gt.py --ckptdir model_assessment
 
 Use "evaluation_speechocean.py".  Change the input path of the "get_prediction" function. 
 
-```
-
  
 ## Test on your data.
 
@@ -59,9 +58,13 @@ python api.py --inputdir /path/to/your/wav/dir --ckptdir model_assessment
 ```
 Note: to prevent OOM, if a wave file is longer than 15 seconds, the model will work on segments and merge the results instead of processing the entire wave file at once.
 
+Pretrained model: 
+Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)
+Note: the scores in the paper are the average of five models training with different random seeds. 
+
 ## References:
 The Charsiu.py, models.py, processors.py, utils.py in this repo are revised from [Charsiu](https://github.com/lingjzhu/charsiu/tree/main). 
 The major change includes:
-(1) return the output embedding (return the probability of all possible phones)  
+(1) return the output embedding (return the probability of all possible phones)   
 (2) prevent merging the duration of multiple identical words.    
     (e.g., very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))  
