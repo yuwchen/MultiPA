@@ -18,10 +18,10 @@ pip install spacy==2.3.0
 # (spacy need to be 2.x version) 
 pip install levenshtein
 pip install nltk
-pip install g2pe
 pip install praatio
 pip install g2pM
-
+pip install librosa
+pip install g2p-en
 ```
 
 #### Download pre-trained model
