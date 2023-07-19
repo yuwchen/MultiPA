@@ -130,7 +130,7 @@ def main():
             except Exception as e:
                 print(e)
                 valid = 'F'
-                output = "{}; A:{}; F:{}; P:{}; T:{}; Valid:{}; ASR_s:{}; ASR_w:{}; w_a:{}; w_s:{}; w_t:{}; alignment:{}".format(filename, '', '', '', '', valid, '', '', '', '', '', '')
+                output = "{}; A:{}; F:{}; P:{}; T:{}; Valid:{}; ASR_s:{}; ASR_w:{}; w_a:{}; w_s:{}; w_t:{}; alignment:{}".format(filename, '', '', '', '', valid, sen_asr_s, sen_asr_w, '', '', '', '')
                 prediction.write(output+'\n')
                 continue
                
