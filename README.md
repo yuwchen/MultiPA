@@ -45,14 +45,13 @@ Get the assessment results with the ground-truth transcript
 python test_gt.py --ckptdir model_assessment
 ```
 
-Get the assessment results without the ground-truth transcript
-```
-python test_mb.py --ckptdir model_assessment
-```
-
 ### Step 4. Evaluation
 
+Use "evaluation_speechocean.py".  Change the input path of the "get_prediction" function. 
 
+```
+
+ 
 ## Test on your data.
 
 ```
@@ -63,6 +62,6 @@ Note: to prevent OOM, if a wave file is longer than 15 seconds, the model will w
 ## References:
 The Charsiu.py, models.py, processors.py, utils.py in this repo are revised from [Charsiu](https://github.com/lingjzhu/charsiu/tree/main). 
 The major change includes:
-(1) return the output embedding (return the probability of all possible phones)
-(2) prevent merging the duration of multiple identical words.   
-    (e.g., very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))
+(1) return the output embedding (return the probability of all possible phones)  
+(2) prevent merging the duration of multiple identical words.    
+    (e.g., very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))  
