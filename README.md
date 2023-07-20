@@ -28,7 +28,7 @@ pip install g2p-en
 (1) Download [HuBERT Base (~95M params)](https://github.com/facebookresearch/fairseq/blob/main/examples/hubert/README.md), and put the hubert_base_ls960.pt in fairseq_hubert dir.   
 (2) Download [roberta.base model](https://github.com/facebookresearch/fairseq/blob/main/examples/roberta/README.md), and put the model.pt and dict.txt in fairseq_roberta dir.
 
-## Reproduce the results 
+## Reproduce the speechocean762 results 
 
 ### Step 1. Data Preparation 
 (1) Download the speechocean762 dataset: [Link](https://www.openslr.org/101).   
@@ -72,6 +72,16 @@ The results will be saved in the "model_assessment_speechocean762_test_gtb.txt" 
 ### Step 4. Evaluation
 
 Use "evaluation_speechocean.py". Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
+
+Note:  
+- Since the whisper might give different recognition results for the same utterance, the performance scores will be slightly different for different runs.
+- For utterances that the whisper cannot recognize any word and the model cannot give the assessment scores, the lowest scores in the training data are used.
+  
+Performance (PCC):
+| uttr-accuracy | uttr-fluency | uttr-prosodic | uttr-total  | word-accuracy | word-stress | word-total |
+|---------------|--------------|---------------|-------------|---------------|-------------|------------|
+| ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
+
 
 ## Test on your data.
 
