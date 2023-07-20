@@ -28,7 +28,7 @@ pip install g2p-en
 (1) Download [HuBERT Base (~95M params)](https://github.com/facebookresearch/fairseq/blob/main/examples/hubert/README.md), and put the hubert_base_ls960.pt in fairseq_hubert dir.   
 (2) Download [roberta.base model](https://github.com/facebookresearch/fairseq/blob/main/examples/roberta/README.md), and put the model.pt and dict.txt in fairseq_roberta dir.
 
-## Reproduced the results 
+## Reproduce the results 
 
 ### Step 1. Data Preparation 
 (1) Download the speechocean762 dataset: [Link](https://www.openslr.org/101).   
