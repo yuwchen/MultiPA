@@ -118,7 +118,7 @@ def main():
     parser.add_argument('--txtfiledir', default='./speechocean762',  type=str, help='Path to training txt directory')
     parser.add_argument('--fairseq_base_model', default='./fairseq_hubert/hubert_base_ls960.pt', type=str, help='Path to pretrained fairseq base model')
     parser.add_argument('--finetune_from_checkpoint', type=str, required=False, help='Path to the checkpoint to finetune from')
-    parser.add_argument('--outdir', type=str, required=False, default='model_assessment_r2', help='Output directory for trained checkpoints')
+    parser.add_argument('--outdir', type=str, required=False, default='model_assessment', help='Output directory for trained checkpoints')
 
     args = parser.parse_args()
 
