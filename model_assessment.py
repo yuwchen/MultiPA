@@ -77,7 +77,7 @@ class PronunciationPredictor(nn.Module):
         features_p[:,:,self.p_align_size+self.p_pred_size:] = self.p_feature_layer_pred_asr(features_p[:,:,self.p_align_size+self.p_pred_size:])
 
         # align phone-level features to word-level features
-        features_p_aligned = torch.zeros((gt_word_embed.shape[0], gt_word_embed.shape[1], self.                         p_align_size+self.p_pred_size*2)).cuda()
+        features_p_aligned = torch.zeros((gt_word_embed.shape[0], gt_word_embed.shape[1], self.p_align_size+self.p_pred_size*2)).cuda()
         for b_idx in range(batch_size):
             for w_idx, p_list in enumerate(word_phone_map[b_idx]):
                 features_p_aligned[b_idx, w_idx, :] = features_p[b_idx,p_list,:].mean(dim=0)
