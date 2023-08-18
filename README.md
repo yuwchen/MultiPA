@@ -1,12 +1,14 @@
-# NIPRA
+# MultiPA
 
-NIPRA: a non-intrusive pronunciation assessment model
+This repo is the implementation of the paper:
+MultiPA: a multi-task speech pronunciation assessment system for a closed and open response scenario
+[Arxiv]
 
 ### Installation
 
 ```
-conda create -n NIPRA python=3.9
-conda activate NIPRA
+conda create -n MultiPA python=3.9
+conda activate MultiPA
 pip install fairseq
 pip install soundfile
 pip install -U openai-whisper
@@ -15,7 +17,6 @@ pip install num2words
 pip install pyctcdecode
 pip install https://github.com/kpu/kenlm/archive/master.zip
 pip install spacy==2.3.0
-# (spacy need to be 2.x version) 
 pip install levenshtein
 pip install nltk
 pip install praatio
@@ -23,6 +24,8 @@ pip install g2pM
 pip install librosa
 pip install g2p-en
 ```
+Note: spacy needs to be 2.x version
+
 
 #### Download pre-trained model
 (1) Download [HuBERT Base (~95M params)](https://github.com/facebookresearch/fairseq/blob/main/examples/hubert/README.md), and put the hubert_base_ls960.pt in fairseq_hubert dir.   
@@ -75,10 +78,11 @@ Use "evaluation_speechocean.py". Change the input path of the "get_prediction" f
 
 Note:  
 - Since the whisper might give different recognition results for the same utterance, the performance scores will be slightly different for different runs.
-- For utterances that the whisper cannot recognize any word and the model cannot give the assessment scores, the lowest scores in the training data are used.
-  
+- For utterances that the MultiPA fails to process, the lowest scores in the training data are used. (i.e., accuracy = 1, fluency = 0, prosodic = 0, total = 0, completeness = 0, word_accuracy = 0, word_stress= 5, and word_total = 1.)  
+- The scores in the paper are the average of five models training with different random seeds.   
+
 Performance (PCC):
-| uttr-accuracy | uttr-fluency | uttr-prosodic | uttr-total  | word-accuracy | word-stress | word-total |
+| sen-accuracy | sen-fluency   | sen-prosody   | sen-total  | word-accuracy | word-stress | word-total |
 |---------------|--------------|---------------|-------------|---------------|-------------|------------|
 | ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
 
@@ -92,11 +96,13 @@ Note: to prevent OOM, if a wave file is longer than 15 seconds, the model will w
 
 Pretrained model:   
 Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)  
-Note: the scores in the paper are the average of five models training with different random seeds.  
 
-## References:
+## References
 The Charsiu.py, models.py, processors.py, utils.py in this repo are revised from [Charsiu](https://github.com/lingjzhu/charsiu/tree/main). 
 The major change includes:  
 (1) return the output embedding (return the probability of all possible phones)   
 (2) prevent merging the duration of multiple identical words.    
-    (e.g., very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))  
+    (e.g., transcript: very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))  
+    -> However, in some cases, the model will still return only one alignment result, leading to the mismatch between words in the input sentence and the alignmened words. 
+
+## Citation
