@@ -64,12 +64,19 @@ python model_assessment.py --outdir model_assessment
 Note: usually, the validation loss will stop decreasing after 2 epochs.
 
 ### Step 3. Inference
-Get the assessment results with the ground-truth transcript
+Get the assessment results in a closed response scenario (using ground-truth transcript)
 ```
-python test_gt.py --ckptdir model_assessment
+python test_closed.py --ckptdir model_assessment
 ```
 The results will be saved in the "model_assessment_speechocean762_test_gtb.txt" with the format:  
 {wavname}; A:{uttr-accuracy}; F:{uttr-fluency}; P:{uttr-prosodic}; T:{uttr-total}; Valid:{whether_output_is_valid}; ASR_s:{groud-truth-sentence}; ASR_w:{asr-results}; w_a:{word-accuracy}; w_s:{word-stress}; w_t:{w-total}; alignment:{forced-alignment-result}
+
+
+Get the assessment results in an open response scenario (using the result of ASRt as a ground-truth transcript)
+```
+python test_open.py --ckptdir model_assessment
+```
+The results will be saved in the "model_assessment_speechocean762_test_mb.txt" 
 
 
 ### Step 4. Evaluation
@@ -78,10 +85,11 @@ Use "evaluation_speechocean.py". Change the input path of the "get_prediction" f
 
 Note:  
 - Since the whisper might give different recognition results for the same utterance, the performance scores will be slightly different for different runs.
-- For utterances that the MultiPA fails to process, the lowest scores in the training data are used. (i.e., accuracy = 1, fluency = 0, prosodic = 0, total = 0, completeness = 0, word_accuracy = 0, word_stress= 5, and word_total = 1.)  
+- For utterances that the MultiPA fails to process, the lowest scores in the training data are used. (i.e., accuracy = 1, fluency = 0, prosodic = 0, total = 0, completeness = 0, word_accuracy = 0, word_stress= 5, and word_total = 1.)
+- The scores higher than 10 will be clipped to 10. 
 - The scores in the paper are the average of five models training with different random seeds.   
 
-Performance (PCC):
+Closed response performance (PCC):
 | sen-accuracy | sen-fluency   | sen-prosody   | sen-total  | word-accuracy | word-stress | word-total |
 |---------------|--------------|---------------|-------------|---------------|-------------|------------|
 | ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
@@ -92,7 +100,9 @@ Performance (PCC):
 ```
 python api.py --inputdir /path/to/your/wav/dir --ckptdir model_assessment
 ```
-Note: to prevent OOM, if a wave file is longer than 15 seconds, the model will work on segments and merge the results instead of processing the entire wave file at once.
+Note: 
+- This api works on open response, please replace "sen_asr_s" with the target sentence if you want to test on closed response. 
+- To prevent OOM, if a wave file is longer than 15 seconds, the model will work on segments and merge the results instead of processing the entire wave file at once.
 
 Pretrained model:   
 Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)  
