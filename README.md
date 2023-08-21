@@ -81,7 +81,9 @@ The results will be saved in the "model_assessment_speechocean762_test_mb.txt"
 
 ### Step 4. Evaluation
 
-Use "evaluation_speechocean.py". Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
+#### For closed response scenario
+
+Use "evaluation_speechocean_closed.py". Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
 
 Note:  
 - Since the whisper might give different recognition results for the same utterance, the performance scores will be slightly different for different runs.
@@ -93,6 +95,13 @@ Closed response performance (PCC):
 | sen-accuracy | sen-fluency   | sen-prosody   | sen-total  | word-accuracy | word-stress | word-total |
 |---------------|--------------|---------------|-------------|---------------|-------------|------------|
 | ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
+
+
+#### For closed response scenario
+
+Use "evaluation_speechocean_open.py". 
+(1) Calculate and save the alignment information of ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.
+(2) Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
 
 
 ## Test on your data.
