@@ -97,7 +97,7 @@ Closed response performance (PCC):
 | ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
 
 
-#### For closed response scenario
+#### For open response scenario
 
 Use "evaluation_speechocean_open.py". 
 (1) Calculate and save the alignment information of ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.
