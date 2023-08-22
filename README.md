@@ -110,8 +110,8 @@ Use "evaluation_speechocean_open.py".
 python api.py --inputdir /path/to/your/wav/dir --ckptdir model_assessment
 ```
 Note: 
-- This api works on open response, please replace "sen_asr_s" with the target sentence if you want to test on closed response. 
-- To prevent OOM, if a wave file is longer than 15 seconds, the model will work on segments and merge the results instead of processing the entire wave file at once.
+- This api works on open response, please replace "sen_asr_s" with the target sentence if you want to test on closed response.
+- One limitation of MultiPA is its ability to assess long utterances. First, MultiPA might fail to process a long utterance due to the GPU out-off-memory issue. In addition, its generalization capabilities might be limited because it was trained on utterances shorter than 20 seconds. Therefore, an additional audio segmentation step is recommended when using MultiPA on long utterances. In the api.py, we implement a simple segmentation method based on whisper's results. Specifically, if a wave file is longer than 15 seconds, the model will work on whisper segments and merge (average) the results instead of processing the entire wave file at once.  
 
 Pretrained model:   
 Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)  
