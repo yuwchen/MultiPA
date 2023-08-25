@@ -1,8 +1,7 @@
 # MultiPA
 
-This repo is the implementation of the paper:
-MultiPA: a multi-task speech pronunciation assessment system for a closed and open response scenario
-[Arxiv]
+This repo is the implementation of the paper:  
+MultiPA: a multi-task speech pronunciation assessment system for a closed and open response scenario [[Arxiv]](https://arxiv.org/abs/2308.12490)
 
 ### Installation
 
@@ -99,19 +98,19 @@ Closed response performance (PCC):
 
 #### For open response scenario
 
-Use "evaluation_speechocean_open.py". 
-(1) Calculate and save the alignment information of ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.
-(2) Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
-
-
+Use "evaluation_speechocean_open.py".   
+(1) Calculate and save the alignment information of the ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.  
+(2) Change the input path of the "get_prediction" function to the path of the generated txt file in Step 3.  
+- Note: The evaluation of the word-level assessment result is different from the closed response scenario because there is a potential mismatch between the ground-truth label and the predicted scores. (the ground-truth labels are aligned with the ground-truth words, whereas the predicted word-level scores are aligned with the ASR-recognized words.)  
+  
 ## Test on your data.
 
 ```
 python api.py --inputdir /path/to/your/wav/dir --ckptdir model_assessment
 ```
 Note: 
-- This api works on open response, please replace "sen_asr_s" with the target sentence if you want to test on closed response.
-- One limitation of MultiPA is its ability to assess long utterances. First, MultiPA might fail to process a long utterance due to the GPU out-off-memory issue. In addition, its generalization capabilities might be limited because it was trained on utterances shorter than 20 seconds. Therefore, an additional audio segmentation step is recommended when using MultiPA on long utterances. In the api.py, we implement a simple segmentation method based on whisper's results. Specifically, if a wave file is longer than 15 seconds, the model will work on whisper segments and merge (average) the results instead of processing the entire wave file at once.  
+- This api works on open response. Please replace "sen_asr_s" with the target sentence if you want to test on closed response. 
+- One limitation of MultiPA is its ability to assess long utterances. First, MultiPA might fail to process a long utterance due to the GPU out-off-memory issue. In addition, its  generalization capabilities might be limited because it was trained on utterances shorter than 20 seconds. Therefore, an additional audio segmentation step is recommended when using MultiPA on long utterances. In the api.py, we implement a simple segmentation method based on whisper's results. Specifically, if a wave file is longer than 15 seconds, the model will work on whisper segments and merge (average) the results instead of processing the entire wave file at once.   
 
 Pretrained model:   
 Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)  
@@ -119,9 +118,9 @@ Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3
 ## References
 The Charsiu.py, models.py, processors.py, utils.py in this repo are revised from [Charsiu](https://github.com/lingjzhu/charsiu/tree/main). 
 The major change includes:  
-(1) return the output embedding (return the probability of all possible phones)   
-(2) prevent merging the duration of multiple identical words.    
-    (e.g., transcript: very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))  
-    -> However, in some cases, the model will still return only one alignment result, leading to the mismatch between words in the input sentence and the alignmened words. 
+(1) return the output embedding (return the probability of all possible phones)    
+(2) prevent merging the duration of multiple identical words.     
+    (e.g., transcript: very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))   
+    -> However, in some cases, the model will still return only one alignment result, leading to the mismatch between words in the input sentence and the alignedd words.  
 
 ## Citation
