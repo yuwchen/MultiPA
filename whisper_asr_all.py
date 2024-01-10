@@ -28,6 +28,9 @@ def main():
       model = whisper.load_model("base.en")
       outputname = os.path.join('whisper_results','speechocean_whisper_all_base_eng.csv')
       
+      if not os.path.exists('whisper_results'):
+            os.makedirs('whisper_results')
+      
       try:
             print('Number of files:', len(file_list))
             df = pd.read_csv(outputname)
