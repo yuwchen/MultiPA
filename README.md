@@ -22,6 +22,7 @@ pip install praatio
 pip install g2pM
 pip install librosa
 pip install g2p-en
+pip install pandas
 ```
 Note: spacy needs to be 2.x version
 
