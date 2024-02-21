@@ -6,7 +6,7 @@ MultiPA: a multi-task speech pronunciation assessment system for a closed and op
 
  - [Requirement](#Requirement)
  - [Train and evalaute on speechocean762 dataset](#Train-and-evalaute-on-speechocean762-dataset)
- - [Test on you data](#Test-on-you-data)
+ - [Test on your data](#Test-on-you-data)
  - [References](#References)
  - [MultiPA data](#MultiPA-data)
  - [Citation](#Citation)
@@ -90,7 +90,7 @@ The results will be saved in the "model_assessment_speechocean762_test_mb.txt"
 
 ### Step 4. Evaluation
 -----
-### For closed response scenario
+### Closed response scenario
 
 Use "evaluation_speechocean_closed.py". Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
 
@@ -106,9 +106,13 @@ Closed response performance (PCC):
 | ~0.73         | ~0.79        | ~0.78         | ~0.76       |~0.52           |~0.19       | ~0.53    | 
 
 ### Completeness assessment metric
+According to results of the previous studies, the completeness score is difficult to learn using a neural network. Therefore, we propose a forced-alignment-based method to assess completeness instead of training the completeness score with the main structure. The completeness score is defined as whether an L2 learner completes all words in the target sentence without any omissions. The idea is that if the L2 learner misses a word during pronunciation, the forced-alignment model will encounter difficulty in aligning that word to the speech signal, resulting in a shorter duration for the missed word compared to the properly pronounced words. Then, a predefined duration threshold selected based on empirical experiments can classify words into complete and incomplete words. Finally, the completeness score is calculated by identifying the ratio of complete words to the total number of words in the transcript. 
+
+We analyze the word duration distribution from the forced alignment model. In this experiment, complete words are drawn from the speechocean762 dataset with full completeness scores, whereas incomplete words are simulated by randomly inserting an extra word into the original sentence. Complete words follow a nearly normal distribution, averaging around 0.38 seconds. In contrast, incomplete words exhibit a right-skewed pattern, with mean approximately at 0.075 seconds. Next, we assess various duration thresholds' effectiveness in distinguishing complete from incomplete words. Our findings reveal a threshold of roughly 0.07 seconds yielding the highest F1 score, approximately 85\%, indicating that the forced-alignment model can effectively detect missing words in a target sentence. 
+
 
 -----
-### For open response scenario
+### Open response scenario
 
 Use "evaluation_speechocean_open.py".   
 (1) Calculate and save the alignment information of the ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.   
