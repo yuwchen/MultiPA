@@ -150,8 +150,10 @@ The major change includes:
 ## MultiPA data
 
 Pilot dataset for real-world open response scenario speech assessment. 
-Coming soon ..?
+Download will be made available after the paper is published.
 
+### Acknowledge 
+This data is collected by using [Label Studio](https://labelstud.io/) Academic Program. We thank Label studio to provide platform that allows researchers to collect data easily.
 
 ## Citation
 Please cite our paper if you find this repository useful.
