@@ -3,7 +3,13 @@
 This repo is the implementation of the paper:  
 MultiPA: a multi-task speech pronunciation assessment system for a closed and open response scenario [[Arxiv]](https://arxiv.org/abs/2308.12490)
 
-### Installation
+
+ - [Requirement](#Requirement)
+ - [Train and evalaute on speechocean762 dataset](#Training)
+ - [References](#References)
+ 
+
+## Requirement
 
 ```
 conda create -n MultiPA python=3.9
