@@ -127,7 +127,7 @@ Note:
 
 
   
-## Test on your data.
+## Test on your data
 
 ```
 python api.py --inputdir /path/to/your/wav/dir --ckptdir model_assessment
