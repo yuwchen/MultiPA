@@ -6,7 +6,7 @@ MultiPA: a multi-task speech pronunciation assessment system for a closed and op
 
  - [Requirement](#Requirement)
  - [Train and evalaute on speechocean762 dataset](#Train-and-evalaute-on-speechocean762-dataset)
- - [Test on your data](#Test-on-you-data)
+ - [Test on your data](#Test-on-your-data)
  - [References](#References)
  - [MultiPA data](#MultiPA-data)
  - [Citation](#Citation)
@@ -40,7 +40,7 @@ Note: spacy needs to be 2.x version
 (1) Download [HuBERT Base (~95M params)](https://github.com/facebookresearch/fairseq/blob/main/examples/hubert/README.md), and put the hubert_base_ls960.pt in fairseq_hubert dir.   
 (2) Download [roberta.base model](https://github.com/facebookresearch/fairseq/blob/main/examples/roberta/README.md), and put the model.pt and dict.txt in fairseq_roberta dir.
 
-## Reproduce the results 
+## Train and evalaute on speechocean762 dataset
 
 ### Step 1. Data Preparation 
 (1) Download the speechocean762 dataset: [Link](https://www.openslr.org/101).   
