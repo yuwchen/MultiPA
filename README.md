@@ -5,9 +5,12 @@ MultiPA: a multi-task speech pronunciation assessment system for a closed and op
 
 
  - [Requirement](#Requirement)
- - [Train and evalaute on speechocean762 dataset](#Training)
+ - [Train and evalaute on speechocean762 dataset](#Train-and-evalaute-on-speechocean762-dataset)
+ - [Test on you data](#Test-on-you-data)
  - [References](#References)
- 
+ - [MultiPA data](#MultiPA-data)
+ - [Citation](#Citation)
+
 
 ## Requirement
 
@@ -86,8 +89,8 @@ The results will be saved in the "model_assessment_speechocean762_test_mb.txt"
 
 
 ### Step 4. Evaluation
-
-#### For closed response scenario
+-----
+### For closed response scenario
 
 Use "evaluation_speechocean_closed.py". Change the input path of the "get_prediction" function to the path of generated txt file in the Step 3.
 
@@ -98,17 +101,27 @@ Note:
 - The scores in the paper are the average of five models training with different random seeds.   
 
 Closed response performance (PCC):
-| sen-accuracy | sen-fluency   | sen-prosody   | sen-total  | word-accuracy | word-stress | word-total |
+| sen-accuracy  | sen-fluency  | sen-prosody   | sen-total   | word-accuracy | word-stress | word-total |
 |---------------|--------------|---------------|-------------|---------------|-------------|------------|
-| ~0.7330       | ~0.7971      | ~0.7871       | ~0.7608     |~0.5220        |~0.1999      | ~0.5314    | 
+| ~0.73         | ~0.79        | ~0.78         | ~0.76       |~0.52           |~0.19       | ~0.53    | 
 
+### Completeness assessment metric
 
-#### For open response scenario
+-----
+### For open response scenario
 
 Use "evaluation_speechocean_open.py".   
-(1) Calculate and save the alignment information of the ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.  
-(2) Change the input path of the "get_prediction" function to the path of the generated txt file in Step 3.  
-- Note: The evaluation of the word-level assessment result is different from the closed response scenario because there is a potential mismatch between the ground-truth label and the predicted scores. (the ground-truth labels are aligned with the ground-truth words, whereas the predicted word-level scores are aligned with the ASR-recognized words.)  
+(1) Calculate and save the alignment information of the ground-truth transcript using get_gt_alignment.py. Change the path to dir in line 163.   
+(2) Change the input path of the "get_prediction" function to the path of the generated txt file in Step 3.   
+Note:  
+- The evaluation of the word-level assessment result is different from the closed response scenario because there is a potential mismatch between the ground-truth label and the predicted scores. (the ground-truth labels are aligned with the ground-truth words, whereas the predicted word-level scores are aligned with the ASR-recognized words.)
+- Since the whisper might give different recognition results for the same utterance, the performance scores will be slightly different for different runs.
+
+| sen-accuracy  | sen-fluency  | sen-prosody   | sen-total   | word-accuracy | word-stress | word-total |
+|---------------|--------------|---------------|-------------|---------------|-------------|------------|
+| ~0.70         | ~0.77         | ~0.76        | ~0.73       |~0.42          |~0.24        | ~0.44      |
+
+
   
 ## Test on your data.
 
@@ -130,4 +143,11 @@ The major change includes:
     (e.g., transcript: very very -> return (s1, e1, very), (s2, e2, very) instead of (s1, e2, very))   
     -> However, in some cases, the model will still return only one alignment result, leading to the mismatch between words in the input sentence and the alignedd words.  
 
+## MultiPA data
+
+Pilot dataset for real-world open response scenario speech assessment. 
+Coming soon ..?
+
+
 ## Citation
+Please cite our paper if you find this repository useful.
