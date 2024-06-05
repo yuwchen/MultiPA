@@ -1,7 +1,8 @@
 # MultiPA
 
-This repo is the implementation of the paper:  
-MultiPA: a multi-task speech pronunciation assessment system for a closed and open response scenario [[Arxiv]](https://arxiv.org/abs/2308.12490)
+This repo is the implementation of the paper accepted by INTERSPEECH 2024:  
+MultiPA: A Multi-task Speech Pronunciation Assessment Model for Open
+Response Scenarios [[Arxiv]](https://arxiv.org/abs/2308.12490)
 
 
  - [Requirement](#Requirement)
@@ -149,11 +150,17 @@ The major change includes:
 
 ## MultiPA data
 
-Pilot dataset for real-world open response scenario speech assessment. 
-Download will be made available after the paper is published.
+Pilot dataset for real-world open response scenario speech assessment.  
+Download will be made available after the paper is published. 
 
 ### Acknowledge 
 This data is collected by using [Label Studio](https://labelstud.io/) Academic Program. We thank Label studio to provide platform that allows researchers to collect data easily.
 
 ## Citation
-Please cite our paper if you find this repository useful.
+Please cite our paper if you find this repository useful, Thanks!
+
+@inproceedings{chen2024multipa,
+title = {{MultiPA}: A Multi-task Speech Pronunciation Assessment Model for Open Response Scenarios},
+author = {Chen, Yu-Wen and Yu, Zhou and Hirschberg, Julia},
+booktitle = {Proc. INTERSPEECH 2024}
+}
