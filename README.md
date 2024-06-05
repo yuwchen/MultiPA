@@ -2,7 +2,7 @@
 
 This repo is the implementation of the paper accepted by INTERSPEECH 2024:  
 MultiPA: A Multi-task Speech Pronunciation Assessment Model for Open
-Response Scenarios [[Arxiv]](https://arxiv.org/abs/2308.12490)
+Response Scenarios [[Arxiv]]()
 
 
  - [Requirement](#Requirement)
@@ -159,8 +159,8 @@ This data is collected by using [Label Studio](https://labelstud.io/) Academic P
 ## Citation
 Please cite our paper if you find this repository useful, Thanks!
 
-@inproceedings{chen2024multipa,
-title = {{MultiPA}: A Multi-task Speech Pronunciation Assessment Model for Open Response Scenarios},
-author = {Chen, Yu-Wen and Yu, Zhou and Hirschberg, Julia},
-booktitle = {Proc. INTERSPEECH 2024}
+@inproceedings{chen2024multipa,  
+title = {{MultiPA}: A Multi-task Speech Pronunciation Assessment Model for Open Response Scenarios},  
+author = {Chen, Yu-Wen and Yu, Zhou and Hirschberg, Julia},  
+booktitle = {Proc. INTERSPEECH 2024}  
 }
