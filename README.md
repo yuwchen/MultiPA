@@ -2,7 +2,7 @@
 
 This repo is the implementation of the paper accepted by INTERSPEECH 2024:  
 MultiPA: A Multi-task Speech Pronunciation Assessment Model for Open
-Response Scenarios [[Arxiv]]()
+Response Scenarios [[Arxiv]](https://arxiv.org/abs/2308.12490)
 
 
  - [Requirement](#Requirement)
