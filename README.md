@@ -142,7 +142,8 @@ Note:
 - One limitation of MultiPA is its ability to assess long utterances. First, MultiPA might fail to process a long utterance due to the GPU out-off-memory issue. In addition, its  generalization capabilities might be limited because it was trained on utterances shorter than 20 seconds. Therefore, an additional audio segmentation step is recommended when using MultiPA on long utterances. In the api.py, we implement a simple segmentation method based on whisper's results. Specifically, if a wave file is longer than 15 seconds, the model will work on whisper segments and merge (average) the results instead of processing the entire wave file at once.   
 
 Pretrained model:   
-Download pre-trained model: [Google Drive](https://drive.google.com/file/d/1Kpm3BeEh6Rh7JZ5tatyHMUMipuo0RYds/view?usp=sharing)  
+Download pre-trained model: 
+[Hugging Face](https://huggingface.co/yuwchen/multipa/tree/main)
 
 ## References
 The Charsiu.py, models.py, processors.py, utils.py in this repo are revised from [Charsiu](https://github.com/lingjzhu/charsiu/tree/main). 
@@ -155,8 +156,9 @@ The major change includes:
 ## MultiPA data
 
 Pilot dataset for real-world open response scenario speech assessment.  
-[Download](https://drive.google.com/drive/folders/1T1_xTcwPF94WtUU4XVId7bGYPvAvwCSZ?usp=sharing)
-Please submit a request to access. I will add your email to share list
+[Hugging Face](https://huggingface.co/yuwchen/multipa/tree/main)
+
+Note: Since the dataset was collected for a pilot study, its size is limited.
 
 ### Acknowledge 
 This data is collected by using [Label Studio](https://labelstud.io/) Academic Program. We thank Label studio to provide platform that allows researchers to collect data easily.
